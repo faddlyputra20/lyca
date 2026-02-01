@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Faddly & Cica</title>
+    <meta name="description" content="Undangan Digital Pernikahan Faddly Putra Permana Adzrye & Cica Ratna Ningsih - Minggu, 15 Februari 2026">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brown: #4a2c1f;
+            --cream: #fdf8f2;
+            --gold: #c9a96e;
+            --dark-gold: #a67c52;
+            --sage: #a8b5a2;
+        }
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: var(--brown);
+            background: var(--cream);
+            background-image: linear-gradient(rgba(253,248,242,0.95), rgba(253,248,242,0.95)),
+                              url('https://www.transparenttextures.com/patterns/cream-paper.png'); /* subtle paper texture */
+            line-height: 1.8;
+        }
+        h1, h2, .script-font {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold);
+        }
+        h1 { font-size: 5rem; margin: 0.2em 0; }
+        h2 { font-size: 3rem; margin: 1.5em 0 0.8em; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; text-align: center; }
+        .section { padding: 60px 0; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        .section.visible { opacity: 1; transform: translateY(0); }
+
+        /* Cover */
+        #cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)),
+                        url('https://images.unsplash.com/photo-1519741497674-281450b3b0a0?auto=format&fit=crop&q=80'); /* elegant wedding bg */
+            background-size: cover;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+        #open-btn {
+            margin-top: 2em;
+            padding: 15px 50px;
+            font-size: 1.3rem;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+            border-radius: 30px;
+            transition: 0.4s;
+        }
+        #open-btn:hover { background: var(--gold); color: white; }
+
+        /* Profiles */
+        .profiles { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; margin: 40px 0; }
+        .profile-card { max-width: 350px; }
+        .profile-card img { width: 100%; border-radius: 50%; border: 6px solid var(--gold); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+
+        /* Story */
+        .story-item { max-width: 800px; margin: 40px auto; text-align: left; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .story-item h4 { font-size: 2.2rem; margin-bottom: 0.6em; color: var(--dark-gold); }
+
+        /* Gallery placeholder */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 30px 0; }
+        .gallery img { width: 100%; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+        .gallery img:hover { transform: scale(1.05); }
+
+        /* Envelope */
+        .envelope { background: linear-gradient(135deg, var(--sage), #8f9c89); color: white; padding: 40px; border-radius: 16px; max-width: 700px; margin: 40px auto; }
+        .copy-btn { background: var(--dark-gold); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; margin-left: 10px; }
+
+        /* Music Control */
+        #music-control {
+            position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
+            background: var(--gold); color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 100;
+        }
+
+        /* Lightbox */
+        #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 200; }
+        #lightbox img { max-width: 90%; max-height: 90vh; border-radius: 12px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3.8rem; }
+            .profiles { gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/audio/2024/09/22/audio_9c2f2a0d35.mp3" type="audio/mpeg"> <!-- Ganti dengan gamelan sakral favoritmu -->
+    </audio>
+    <div id="music-control">▶</div>
+
+    <section id="cover">
+        <div class="container">
+            <h1>Undangan Pernikahan</h1>
+            <p style="font-size: 1.8rem; margin: 1em 0;">Faddly & Cica</p>
+            <p style="font-size: 2.2rem; margin: 2em 0;">Minggu, 15 Februari 2026</p>
+            <button id="open-btn">Buka Undangan</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="section">
+            <h2>Assalamualaikum Wr.Wb.</h2>
+            <p>Dengan segala kerendahan hati, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami.</p>
+        </section>
+
+        <section class="section">
+            <h2>Profil Mempelai</h2>
+            <div class="profiles">
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/400x400?text=Faddly" alt="Faddly">
+                    <h3 class="script-font" style="font-size:2.2rem;">Faddly Putra Permana Adzrye, S.Pd., Gr</h3>
+                    <p>Putra Pertama Bapak Adzkoni dan Ibu Eri Sondari</p>
+                </div>
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/400x400?text=Cica" alt="Cica">
+                    <h3 class="script-font" style="font-size:2.2rem;">Cica Ratna Ningsih, S.Pd., Gr</h3>
+                    <p>Putri kedua (Bungsu) Bapak Nendra dan Ibu Turkini</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Our Story</h2>
+            <div class="story-item">
+                <h4>Tahun 2019 - Pertemuan Pertama</h4>
+                <p>Semuanya dimulai di tahun 2019, saat kami pertama kali menginjakkan kaki di bangku perkuliahan...</p>
+            </div>
+            <div class="story-item">
+                <h4>04 April 2020 - Berpacaran</h4>
+                <p>Bagi Faddly, Cica adalah sosok yang sangat spesial...</p>
+            </div>
+            <div class="story-item">
+                <h4>07 November 2024 - Bertunangan</h4>
+                <p>Tahun 2024 Berjuang Bareng...</p>
+            </div>
+            <div class="story-item">
+                <h4>15 Februari 2026 - Menikah</h4>
+                <p>Kini, setelah enam tahun melewati suka dan duka...</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Detail Acara</h2>
+            <p><strong>Akad Nikah</strong><br>Minggu, 15 Februari 2026 – Pukul 09.00 WIB</p>
+            <p><strong>Resepsi Pernikahan</strong><br>Minggu, 15 Februari 2026 – Pukul 08.00 WIB - Selesai</p>
+            <p>Jatisawit rt 004/rw 003, kec.losari, kab.brebes, provinsi jawa tengah, kode pos 52255. Nomor rumah 185</p>
+            <a href="https://maps.google.com/?q=Jatisawit+rt+004%2Frw+003%2C+Losari%2C+Brebes" target="_blank" style="display:inline-block; margin:20px; padding:12px 30px; background:var(--gold); color:white; text-decoration:none; border-radius:30px;">Lihat Lokasi</a>
+        </section>
+
+        <section class="section">
+            <h2>Amplop Digital</h2>
+            <div class="envelope">
+                <p>Kirim Hadiah Amplop Digital</p>
+                <p>BCA: 3740856901 A/n Faddly Putra Permana Adzrye <button class="copy-btn" onclick="navigator.clipboard.writeText('3740856901')">Salin</button></p>
+                <p>BCA: 3741890877 A/n Cica Ratna Ningsih <button class="copy-btn" onclick="navigator.clipboard.writeText('3741890877')">Salin</button></p>
+                <p>BRI: 7293845675 A/n Cica Ratna Ningsih <button class="copy-btn" onclick="navigator.clipboard.writeText('7293845675')">Salin</button></p>
+                <p>E-Wallet: 081572410258 A/n Cica Ratna Ningsih <button class="copy-btn" onclick="navigator.clipboard.writeText('081572410258')">Salin</button></p>
+                <p>E-Wallet: 085860041679 A/n Faddly Putra Permana Adzrye <button class="copy-btn" onclick="navigator.clipboard.writeText('085860041679')">Salin</button></p>
+                <p style="margin-top:20px;">Bagi yang ingin mengirim kado bisa mengirimkannya ke alamat di atas.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Penutup</h2>
+            <p>Kami sangat berharap Bapak/Ibu/Saudara/i dapat menghadiri acara tersebut.<br>Atas Kehadirannya kami ucapkan terima kasih 🙏</p>
+            <p style="margin-top:2em; font-size:1.4rem;">Hormat Kami,</p>
+            <h2 class="script-font" style="font-size:3rem; margin:0.5em 0;">Faddly & Cica</h2>
+        </section>
+    </div>
+
+    <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+        document.getElementById('music-control').onclick = () => {
+            if (audio.paused) { audio.play(); document.getElementById('music-control').textContent = '⏸'; }
+            else { audio.pause(); document.getElementById('music-control').textContent = '▶'; }
+        };
+
+        document.getElementById('open-btn').onclick = () => {
+            document.getElementById('cover').style.display = 'none';
+            audio.play();
+            document.getElementById('music-control').textContent = '⏸';
+        };
+
+        // Fade in sections
+        const observer = new IntersectionObserver(e => {
+            e.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        });
+        document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+        // Lightbox (jika tambah gallery foto nanti)
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
